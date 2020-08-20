@@ -1,4 +1,5 @@
-﻿using MyShopNew.Core.Models;
+﻿using MyShopNew.Core.Contracts;
+using MyShopNew.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyShopNew.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -22,7 +23,7 @@ namespace MyShopNew.DataAccess.InMemory
             {
                 items = new List<T>();
             }
-            
+
         }
         public void Commit()
         {
